@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Image Classifier</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Animal Image Classifier</h1>
+        <p class="subtitle">Upload a photo and I'll try to tell you if it's a bird, a cat, or a dog.</p>
+
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="upload-box">
+                <input type="file" name="image" id="image-input" accept="image/*" required>
+                <label for="image-input" class="file-label">Choose an image</label>
+                <button type="submit">Classify</button>
+            </div>
+        </form>
+
+        {% if prediction %}
+        <div class="result-box">
+
+            {% if image_url %}
+            <img src="/static/{{ image_url }}" alt="Your uploaded image">
+            {% endif %}
+
+            <p class="result-text">
+                I think this is a <strong>{{ prediction }}</strong> ({{ confidence }}% confident)
+            </p>
+
+        </div>
+        {% endif %}
+
+        <p class="footer-note">
+            Built with PyTorch and Flask &mdash; part of my MSc AI portfolio.
+        </p>
+
+    </div>
+
+    <script>
+        // show the selected filename next to the file input
+        const input = document.getElementById('image-input');
+        const label = document.querySelector('.file-label');
+        input.addEventListener('change', function () {
+            if (input.files.length > 0) {
+                label.textContent = input.files[0].name;
+            }
+        });
+    </script>
+
+</body>
+</html>
