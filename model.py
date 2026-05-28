@@ -65,8 +65,8 @@ class AnimalCNN(nn.Module):
 
 def get_resnet18(num_classes=3):
     # load resnet18 with weights already trained on imagenet (1000 classes)
-    # pretrained=True downloads those weights automatically the first time
-    resnet = models.resnet18(pretrained=True)
+    # weights='IMAGENET1K_V1' is the modern way to do this - pretrained=True was deprecated
+    resnet = models.resnet18(weights='IMAGENET1K_V1')
 
     # freeze all the layers so their weights dont change during training
     # we only want to retrain the final layer we swap in below
