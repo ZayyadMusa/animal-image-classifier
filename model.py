@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torchvision.models as models
 
 
 class AnimalCNN(nn.Module):
@@ -60,3 +61,25 @@ class AnimalCNN(nn.Module):
         x = self.fc2(x)
 
         return x
+
+
+def get_resnet18(num_classes=3):
+    # load resnet18 with weights already trained on imagenet (1000 classes)
+    # pretrained=True downloads those weights automatically the first time
+    resnet = models.resnet18(pretrained=True)
+
+    # freeze all the layers so their weights dont change during training
+    # we only want to retrain the final layer we swap in below
+    for param in resnet.parameters():
+        param.requires_grad = False
+
+    # replace the last fully connected layer
+    # the original outputs 1000 class scores - we only need 3
+    # resnet18's fc layer takes 512 features as input
+    num_features = resnet.fc.in_features
+    resnet.fc = nn.Linear(num_features, num_classes)
+
+    # the new fc layer has requires_grad=True by default
+    # so only that layer gets updated when we train
+
+    return resnet
