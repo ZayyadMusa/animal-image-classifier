@@ -6,13 +6,6 @@ I trained two versions — one I designed from scratch and one using a pretraine
 
 ---
 
-## My other projects
-
-- [Sentiment Analyser](https://github.com/ZayyadMusa/sentiment-analyser)
-- [House Price Predictor](https://github.com/ZayyadMusa/house-price-predictor)
-
----
-
 ## Results
 
 I trained both models on the same data (CIFAR-10 filtered to 3 classes) and compared them on the same test set.
