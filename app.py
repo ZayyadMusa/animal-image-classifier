@@ -11,7 +11,7 @@ app = Flask(__name__)
 # load the model once when the app starts
 # so we dont reload it every time someone uploads an image
 model = AnimalCNN()
-model.load_state_dict(torch.load('model/best_model.pth', map_location='cpu'))
+model.load_state_dict(torch.load('model/best_model.pth', map_location='cpu', weights_only=False))
 model.eval()
 
 class_names = ['bird', 'cat', 'dog']
@@ -39,7 +39,8 @@ def index():
 
         if file:
             # save the uploaded file so we can show it back to the user
-            filename = file.filename
+            # replace spaces with underscores so the image URL doesnt break
+            filename = file.filename.replace(' ', '_')
             save_path = os.path.join(UPLOAD_FOLDER, filename)
             file.save(save_path)
 

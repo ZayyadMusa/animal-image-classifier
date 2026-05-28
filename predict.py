@@ -32,7 +32,7 @@ transform = transforms.Compose([
 def load_model(path):
     model = AnimalCNN()
     # map_location='cpu' means it loads fine even if it was trained on a GPU
-    model.load_state_dict(torch.load(path, map_location='cpu'))
+    model.load_state_dict(torch.load(path, map_location='cpu', weights_only=False))
     model.eval()
     return model
 
