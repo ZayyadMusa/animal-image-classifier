@@ -1,0 +1,20 @@
+# python
+__pycache__/
+*.pyc
+*.pyo
+
+# virtual environment
+venv/
+
+# dataset - too large to push (downloaded automatically by train.py)
+data/
+
+# user uploads from the Flask app
+static/uploads/
+
+# jupyter checkpoints
+.ipynb_checkpoints/
+
+# os
+.DS_Store
+Thumbs.db
