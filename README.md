@@ -154,10 +154,6 @@ A few things that surprised me while building this:
 
 ---
 
-## Screenshots
-
-*(Add screenshots of the web app here after running it)*
 
 ---
 
-*Built as part of my MSc in Artificial Intelligence.*
